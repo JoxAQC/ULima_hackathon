@@ -96,8 +96,8 @@ export const missions: Mission[] = [
     // Módulo 3: Micro-Generación
   {
     id: 5,
-    title: 'Cargador de Móvil con Dinamo',
-    description: 'Genera tu propia electricidad para cargar tu teléfono con un pequeño dínamo de manivela.',
+    title: 'Molino de Viento Generador',
+    description: 'Transforma la energía del viento en luz usando materiales reciclados y un motor de juguete.',
     category: 'Micro-Generación',
     module: 3,
     exp: 150,
@@ -106,10 +106,10 @@ export const missions: Mission[] = [
     co2Saved: 2,
     userSegment: 'All',
     steps: [
-        { title: 'Consigue un Dinamo', description: 'Puedes encontrar dínamos de manivela en tiendas de electrónica o reutilizar uno de una linterna vieja.' },
-        { title: 'Adapta la Conexión', description: 'Conecta un regulador de voltaje y un puerto USB al dínamo para asegurar una carga estable.' },
-        { title: 'Genera Energía', description: 'Gira la manivela para generar electricidad. ¡Verás cómo tu dispositivo empieza a cargar!' },
-        { title: 'Mide tu Potencia', description: 'Calcula cuántos minutos de manivela necesitas para un 5% de carga. ¡Es un buen ejercicio!' },
+        { title: 'Consigue un Motor Pequeño', description: 'Recupera un motor DC pequeño de un carro de juguete viejo o un ventilador USB que no funcione.' },
+        { title: 'Construye las Aspas', description: 'Crea las aspas de tu molino con una botella de plástico o cartón duro. Dales una forma que pueda atrapar el viento.' },
+        { title: 'Ensambla tu Generador', description: 'Une las aspas al eje del motor. Luego, conecta un foquito LED a los terminales del motor.' },
+        { title: '¡Genera Luz!', description: 'Expón tu molino al viento (o usa un ventilador) y mira cómo el LED se enciende. ¡Estás creando energía eólica!' },
     ],
   },
 ];
