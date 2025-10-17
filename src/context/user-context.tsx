@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
@@ -12,6 +13,7 @@ export type User = {
     exp: number;
     credits: number;
     financialSavings: number;
+    co2Saved: number;
   };
 };
 
@@ -19,7 +21,7 @@ type UserContextType = {
   user: User | null;
   isLoading: boolean;
   createUser: (name: string, age: number) => void;
-  updateProgress: (missionId: number, exp: number, credits: number, savings: number) => void;
+  updateProgress: (missionId: number, exp: number, credits: number, savings: number, co2: number) => void;
   clearUser: () => void;
 };
 
@@ -57,6 +59,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         exp: 0,
         credits: 0,
         financialSavings: 0,
+        co2Saved: 0,
       },
     };
     localStorage.setItem('hiri-user', JSON.stringify(newUser));
@@ -65,7 +68,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     router.push('/home');
   }, [router]);
 
-  const updateProgress = useCallback((missionId: number, exp: number, credits: number, savings: number) => {
+  const updateProgress = useCallback((missionId: number, exp: number, credits: number, savings: number, co2: number) => {
     if (user) {
       const updatedUser: User = {
         ...user,
@@ -75,6 +78,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
           exp: user.progress.exp + exp,
           credits: user.progress.credits + credits,
           financialSavings: user.progress.financialSavings + savings,
+          co2Saved: (user.progress.co2Saved || 0) + co2,
         },
       };
       localStorage.setItem('hiri-user', JSON.stringify(updatedUser));

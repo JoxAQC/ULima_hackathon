@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useUser } from '@/context/user-context';
@@ -7,7 +8,7 @@ import { Progress } from '@/components/ui/progress';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { communityMembers } from '@/lib/data';
 import Image from 'next/image';
-import { BarChart, CircleDollarSign, PiggyBank, Sparkles, Trophy } from 'lucide-react';
+import { BarChart, CircleDollarSign, Leaf, Sparkles, Trophy } from 'lucide-react';
 
 function AdultHome() {
   const { user } = useUser();
@@ -15,29 +16,29 @@ function AdultHome() {
   return (
     <div className="p-4 space-y-6">
       <header>
-        <h1 className="text-2xl font-bold text-primary">Welcome, {user?.name}!</h1>
-        <p className="text-muted-foreground">Here's your financial overview.</p>
+        <h1 className="text-2xl font-bold text-primary">Bienvenido, {user?.name}!</h1>
+        <p className="text-muted-foreground">Tu resumen de impacto y ahorro sostenible.</p>
       </header>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Savings</CardTitle>
-            <PiggyBank className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Ahorro Total</CardTitle>
+            <CircleDollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${user?.progress.financialSavings.toFixed(2)}</div>
-            <p className="text-xs text-muted-foreground">+20.1% from last month</p>
+            <div className="text-2xl font-bold">S/ {user?.progress.financialSavings.toFixed(2)}</div>
+            <p className="text-xs text-muted-foreground">Estimado basado en misiones</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">HIRI Credits</CardTitle>
-            <CircleDollarSign className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">CO₂ Ahorrado</CardTitle>
+            <Leaf className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{user?.progress.credits}</div>
-            <p className="text-xs text-muted-foreground">+5 from last mission</p>
+            <div className="text-2xl font-bold">{user?.progress.co2Saved} kg</div>
+            <p className="text-xs text-muted-foreground">¡Un gran impacto!</p>
           </CardContent>
         </Card>
         <Card>
@@ -47,16 +48,16 @@ function AdultHome() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{user?.progress.exp}</div>
-            <p className="text-xs text-muted-foreground">Level 3</p>
+            <p className="text-xs text-muted-foreground">Nivel {Math.floor((user?.progress.exp || 0) / 1000) + 1}</p>
           </CardContent>
         </Card>
       </div>
       <Card>
         <CardHeader>
-          <CardTitle>Recent Activity</CardTitle>
+          <CardTitle>Actividad Reciente</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">You completed "Create a Monthly Budget" mission.</p>
+          <p className="text-muted-foreground">Completaste la misión "Optimiza la Iluminación de tu Hogar".</p>
         </CardContent>
       </Card>
     </div>
@@ -67,15 +68,14 @@ function YouthHome() {
   const { user } = useUser();
   const villageImage = PlaceHolderImages.find(img => img.id === 'youth-village');
   
-  const userRank = communityMembers.findIndex(member => member.name === user?.name) + 1 || communityMembers.length + 1;
   const members = user ? [...communityMembers.filter(m => m.name !== user.name), {id: 99, name: user.name, exp: user.progress.exp, avatar: 'avatar-1'}].sort((a,b) => b.exp - a.exp) : communityMembers;
 
 
   return (
     <div className="space-y-6">
       <header className="bg-village-background p-4 pt-8">
-        <h1 className="text-2xl font-bold text-secondary-foreground">Welcome to your Village, {user?.name}!</h1>
-        <p className="text-muted-foreground">Keep learning to grow your community.</p>
+        <h1 className="text-2xl font-bold text-secondary-foreground">¡Bienvenido a tu Eco-Aldea, {user?.name}!</h1>
+        <p className="text-muted-foreground">Sigue aprendiendo para hacer crecer tu comunidad.</p>
       </header>
 
       <div className="p-4 space-y-6">
@@ -86,21 +86,21 @@ function YouthHome() {
             </div>
           )}
           <CardHeader>
-            <CardTitle>My Village Progress</CardTitle>
+            <CardTitle>Progreso de mi Eco-Aldea</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
-              <span className="text-sm font-medium">Level 3</span>
+              <span className="text-sm font-medium">Nivel {Math.floor((user?.progress.exp || 0) / 1000) + 1}</span>
               <Progress value={(user?.progress.exp || 0) % 1000 / 10} />
-              <span className="text-sm font-medium">Level 4</span>
+              <span className="text-sm font-medium">Nivel {Math.floor((user?.progress.exp || 0) / 1000) + 2}</span>
             </div>
-            <p className="text-xs text-muted-foreground text-center mt-2">{user?.progress.exp} / 1000 EXP to next level</p>
+            <p className="text-xs text-muted-foreground text-center mt-2">{user?.progress.exp} / {((Math.floor((user?.progress.exp || 0) / 1000) + 1) * 1000)} EXP para el siguiente nivel</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2"><Trophy className="text-yellow-500" /> Community Ranking</CardTitle>
+            <CardTitle className="flex items-center gap-2"><Trophy className="text-yellow-500" /> Ranking de la Comunidad</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-4">
@@ -115,7 +115,7 @@ function YouthHome() {
                       <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div className="flex-grow">
-                      <p className={`font-semibold ${isCurrentUser ? 'text-primary' : ''}`}>{member.name} {isCurrentUser && '(You)'}</p>
+                      <p className={`font-semibold ${isCurrentUser ? 'text-primary' : ''}`}>{member.name} {isCurrentUser && '(Tú)'}</p>
                       <p className="text-sm text-muted-foreground">{member.exp} EXP</p>
                     </div>
                   </li>

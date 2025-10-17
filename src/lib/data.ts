@@ -1,3 +1,4 @@
+
 export type MissionStep = {
   title: string;
   description: string;
@@ -7,83 +8,108 @@ export type Mission = {
   id: number;
   title: string;
   description: string;
-  category: 'Financial' | 'Community' | 'Personal Growth';
+  category: 'Iluminación' | 'Climatización' | 'Micro-Generación';
+  module: number;
   exp: number;
   credits: number;
-  financialSavings: number;
-  icon: string;
-  steps: MissionStep[];
+  financialSavings: number; // Ahorro en S/
+  co2Saved: number; // en kg
   userSegment: 'Adult' | 'Youth' | 'All';
+  steps: MissionStep[];
 };
 
 export const missions: Mission[] = [
+  // Módulo 1: Iluminación Autónoma
   {
     id: 1,
-    title: 'Start a Savings Jar',
-    description: 'A simple way to start saving money for your goals.',
-    category: 'Financial',
+    title: 'Crea tu Lámpara Solar Casera',
+    description: 'Aprende a construir una lámpara simple usando energía solar. ¡Ilumina tus noches y ahorra!',
+    category: 'Iluminación',
+    module: 1,
     exp: 50,
     credits: 10,
-    financialSavings: 5,
-    icon: 'mission-financial',
+    financialSavings: 10,
+    co2Saved: 5,
     userSegment: 'Youth',
     steps: [
-      { title: 'Find a Jar', description: 'Find a clean, empty jar or container. It can be glass or plastic.' },
-      { title: 'Decorate It', description: 'Make it your own! Decorate your jar with markers, stickers, or paint.' },
-      { title: 'Set a Goal', description: 'Decide what you\'re saving for. A new toy? A gift? Write it on a label.' },
-      { title: 'Start Saving', description: 'Put your first coin or bill in the jar. Add to it whenever you can!' },
+      { title: 'Reúne los Materiales', description: 'Necesitarás una botella de plástico, un pequeño panel solar, un LED y una batería recargable.' },
+      { title: 'Arma el Circuito', description: 'Conecta el panel solar a la batería y la batería al LED. ¡Sigue nuestra guía paso a paso!' },
+      { title: 'Monta tu Lámpara', description: 'Coloca los componentes dentro de la botella para protegerlos. ¡Tu lámpara está lista!' },
+      { title: '¡A Cargar!', description: 'Deja tu lámpara bajo el sol durante el día para que se cargue y úsala por la noche.' },
     ],
   },
   {
     id: 2,
-    title: 'Create a Monthly Budget',
-    description: 'Take control of your finances by planning your income and expenses.',
-    category: 'Financial',
+    title: 'Optimiza la Iluminación de tu Hogar',
+    description: 'Reduce tu consumo eléctrico cambiando a tecnología LED y aprovechando la luz natural.',
+    category: 'Iluminación',
+    module: 1,
     exp: 100,
-    credits: 25,
-    financialSavings: 50,
-    icon: 'mission-financial',
+    credits: 20,
+    financialSavings: 40,
+    co2Saved: 30,
     userSegment: 'Adult',
     steps: [
-      { title: 'List Income', description: 'List all your sources of income for the month.' },
-      { title: 'Track Expenses', description: 'For one week, write down everything you spend money on.' },
-      { title: 'Categorize Spending', description: 'Group your expenses into categories like "Food", "Transport", and "Entertainment".' },
-      { title: 'Set Limits', description: 'Create a budget by setting spending limits for each category.' },
-      { title: 'Review and Adjust', description: 'At the end of the month, review your budget and adjust for the next month.' },
+        { title: 'Auditoría de Focos', description: 'Revisa todos los focos de tu casa. ¿Cuántos no son LED?' },
+        { title: 'Calcula el Ahorro', description: 'Usa nuestra calculadora para estimar cuánto ahorrarías cambiando a LED.' },
+        { title: 'Cambio Estratégico', description: 'Reemplaza al menos 5 focos incandescentes por focos LED.' },
+        { title: 'Aprovecha la Luz Natural', description: 'Reorganiza un espacio para maximizar el uso de luz solar durante el día.' },
     ],
   },
+    // Módulo 2: Climatización Sostenible
   {
     id: 3,
-    title: 'Community Clean-Up',
-    description: 'Organize or join a clean-up event in your local area.',
-    category: 'Community',
-    exp: 75,
-    credits: 15,
-    financialSavings: 0,
-    icon: 'mission-community',
-    userSegment: 'All',
+    title: 'Construye un Calentador Solar de Agua',
+    description: 'Crea un sistema básico para calentar agua usando el poder del sol. ¡Ideal para experimentos!',
+    category: 'Climatización',
+    module: 2,
+    exp: 80,
+    credits: 25,
+    financialSavings: 20,
+    co2Saved: 15,
+    userSegment: 'Youth',
     steps: [
-      { title: 'Find a Location', description: 'Identify a park, beach, or neighborhood that needs cleaning.' },
-      { title: 'Gather Supplies', description: 'Get gloves, trash bags, and any other necessary cleaning tools.' },
-      { title: 'Invite Friends', description: 'Teamwork makes it fun! Invite friends or family to join you.' },
-      { title: 'Clean Up Safely', description: 'Be mindful of safety. Dont touch sharp objects and wash your hands afterwards.' },
+      { title: 'Prepara la Caja', description: 'Busca una caja de cartón y píntala de negro por dentro para absorber más calor.' },
+      { title: 'Instala la Tubería', description: 'Coloca una manguera negra enrollada dentro de la caja, dejando los extremos afuera.' },
+      { title: 'Crea el Efecto Invernadero', description: 'Cubre la parte superior de la caja con plástico transparente para atrapar el calor.' },
+      { title: 'Prueba tu Calentador', description: 'Conecta un extremo a una fuente de agua fría y observa cómo sale tibia por el otro extremo bajo el sol.' },
     ],
   },
     {
     id: 4,
-    title: 'Learn a New Skill',
-    description: 'Challenge yourself by learning something new this week.',
-    category: 'Personal Growth',
+    title: 'Aislamiento Térmico Inteligente',
+    description: 'Mejora el confort de tu hogar y reduce costos de climatización con soluciones sencillas.',
+    category: 'Climatización',
+    module: 2,
     exp: 120,
     credits: 30,
-    financialSavings: 0,
-    icon: 'mission-growth',
+    financialSavings: 60,
+    co2Saved: 50,
+    userSegment: 'Adult',
+    steps: [
+      { title: 'Detecta Fugas de Aire', description: 'Inspecciona ventanas y puertas en busca de corrientes de aire. Séllalas con burletes.' },
+      { title: 'Usa Cortinas a tu Favor', description: 'Abre las cortinas en invierno para que entre el sol y ciérralas en verano para mantener el frescor.' },
+      { title: 'Optimiza la Ventilación', description: 'Aprende técnicas de ventilación cruzada para refrescar tu casa sin usar electricidad.' },
+      { title: 'Mide el Impacto', description: 'Registra el antes y el después en tu consumo de energía para ver el ahorro.' },
+    ],
+  },
+    // Módulo 3: Micro-Generación
+  {
+    id: 5,
+    title: 'Cargador de Móvil con Dinamo',
+    description: 'Genera tu propia electricidad para cargar tu teléfono con un pequeño dínamo de manivela.',
+    category: 'Micro-Generación',
+    module: 3,
+    exp: 150,
+    credits: 40,
+    financialSavings: 5,
+    co2Saved: 2,
     userSegment: 'All',
     steps: [
-      { title: 'Choose a Skill', description: 'What do you want to learn? Cooking, coding, a new language?' },
-      { title: 'Find Resources', description: 'Look for online tutorials, books, or classes.' },
-      { title: 'Practice Daily', description: 'Spend at least 15-30 minutes every day practicing your new skill.' },
-      { title: 'Share Your Progress', description: 'Show a friend or family member what you have learned.' },
+        { title: 'Consigue un Dinamo', description: 'Puedes encontrar dínamos de manivela en tiendas de electrónica o reutilizar uno de una linterna vieja.' },
+        { title: 'Adapta la Conexión', description: 'Conecta un regulador de voltaje y un puerto USB al dínamo para asegurar una carga estable.' },
+        { title: 'Genera Energía', description: 'Gira la manivela para generar electricidad. ¡Verás cómo tu dispositivo empieza a cargar!' },
+        { title: 'Mide tu Potencia', description: 'Calcula cuántos minutos de manivela necesitas para un 5% de carga. ¡Es un buen ejercicio!' },
     ],
   },
 ];

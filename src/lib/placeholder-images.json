@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "youth-village",
-      "description": "A vibrant illustration of a virtual village for young users.",
-      "imageUrl": "https://images.unsplash.com/photo-1625517131943-0f7a51d6dcc8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx2aWxsYWdlJTIwaWxsdXN0cmF0aW9ufGVufDB8fHx8MTc2MDczOTU4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "village illustration"
+      "description": "Una ilustración de una aldea ecológica con turbinas eólicas y paneles solares.",
+      "imageUrl": "https://images.unsplash.com/photo-1622397333322-284c70289bb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlY28lMjB2aWxsYWdlJTIwaWxsdXN0cmF0aW9ufGVufDB8fHx8MTc2MDc0MDgwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "eco village"
     },
     {
       "id": "avatar-1",
@@ -31,22 +31,22 @@
       "imageHint": "profile photo"
     },
     {
-      "id": "mission-financial",
-      "description": "Icon for financial missions",
-      "imageUrl": "https://images.unsplash.com/photo-1580508174046-170816f65662?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwaWdneSUyMGJhbmt8ZW58MHx8fHwxNzYwNzM5NTgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "piggy bank"
+      "id": "mission-iluminacion",
+      "description": "Icono para misiones de iluminación.",
+      "imageUrl": "https://images.unsplash.com/photo-1620042999805-46b588921a2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2xhciUyMGxhbXB8ZW58MHx8fHwxNzYxMzU3NzIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "solar lamp"
     },
     {
-      "id": "mission-community",
-      "description": "Icon for community missions",
-      "imageUrl": "https://images.unsplash.com/photo-1513171920216-2640b288471b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZW9wbGUlMjBncm91cHxlbnwwfHx8fDE3NjA3Mzk1ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "people group"
+      "id": "mission-climatizacion",
+      "description": "Icono para misiones de climatización.",
+      "imageUrl": "https://images.unsplash.com/photo-1544654907-67436b9da805?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2xhciUyMHdhdGVyJTIwaGVhdGVyfGVufDB8fHx8MTc2MTM1NzcwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "solar heater"
     },
     {
-      "id": "mission-growth",
-      "description": "Icon for personal growth missions",
-      "imageUrl": "https://images.unsplash.com/photo-1649255717215-cbc24b661bbb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzcHJvdXRpbmclMjBwbGFudHxlbnwwfHx8fDE3NjA3Mzk1ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "sprouting plant"
+      "id": "mission-micro-generacion",
+      "description": "Icono para misiones de micro-generación.",
+      "imageUrl": "https://images.unsplash.com/photo-1509390193151-5a331a14643a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aW5kJTIwdHVyYmluZXxlbnwwfHx8fDE3NjEzNTc3ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wind turbine"
     }
   ]
 }
