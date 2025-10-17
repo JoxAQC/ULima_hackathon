@@ -1,14 +1,24 @@
 
 'use client';
 import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
 import * as Tone from 'tone';
 import { missions } from '@/lib/data';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import { Volume2, CheckCircle, Sparkles, Leaf } from 'lucide-react';
+import { Volume2, CheckCircle, Sparkles, Leaf, Award } from 'lucide-react';
 import { useUser } from '@/context/user-context';
 import { useToast } from "@/hooks/use-toast"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
 
 export default function MissionDetailPage() {
   const params = useParams();
@@ -17,6 +27,9 @@ export default function MissionDetailPage() {
   const missionId = parseInt(params.id as string, 10);
   const mission = missions.find((m) => m.id === missionId);
   const { user, updateProgress } = useUser();
+  const [showCompletionDialog, setShowCompletionDialog] = useState(false);
+  const [completionMessage, setCompletionMessage] = useState('');
+
 
   if (!mission || !user) {
     return (
@@ -51,23 +64,24 @@ export default function MissionDetailPage() {
     if (!isCompleted) {
       updateProgress(mission.id, mission.exp, mission.credits, mission.financialSavings, mission.co2Saved);
       
-      let toastDescription = `¡Has ganado ${mission.exp} EXP y ${mission.credits} créditos!`;
+      let rewardMessage = `¡Has ganado ${mission.exp} EXP y ${mission.credits} créditos!`;
 
       if (user.segment === 'Adult') {
-        toastDescription = `¡Felicidades! Has ahorrado S/ ${mission.financialSavings.toFixed(2)} y evitado ${mission.co2Saved}kg de CO2.`;
+        rewardMessage = `¡Felicidades! Has ahorrado S/ ${mission.financialSavings.toFixed(2)} y evitado ${mission.co2Saved}kg de CO2.`;
       } else {
-        const trees = Math.floor(mission.co2Saved / 20) || 1; // Equivalencia simple
-        toastDescription = `¡Genial! Tu proyecto evitó ${mission.co2Saved}kg de CO2, ¡equivale a plantar ${trees} ${trees > 1 ? 'árboles' : 'árbol'}!`;
+        const trees = Math.floor(mission.co2Saved / 20) || 1; 
+        rewardMessage = `¡Genial! Tu proyecto evitó ${mission.co2Saved}kg de CO2, ¡equivale a plantar ${trees} ${trees > 1 ? 'árboles' : 'árbol'}!`;
       }
-
-      toast({
-        title: "¡Misión Completada!",
-        description: toastDescription,
-      });
-
-      router.push('/missions');
+      
+      setCompletionMessage(rewardMessage);
+      setShowCompletionDialog(true);
     }
   };
+
+  const closeDialog = () => {
+    setShowCompletionDialog(false);
+    router.push('/missions');
+  }
 
   return (
     <div className="p-4">
@@ -113,6 +127,23 @@ export default function MissionDetailPage() {
           </Button>
         </CardFooter>
       </Card>
+      
+       <AlertDialog open={showCompletionDialog} onOpenChange={setShowCompletionDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <div className="flex flex-col items-center text-center">
+              <Award className="h-16 w-16 text-yellow-500 mb-4" />
+              <AlertDialogTitle className="text-2xl">¡Misión Completada!</AlertDialogTitle>
+              <AlertDialogDescription className="text-lg mt-2">
+                {completionMessage}
+              </AlertDialogDescription>
+            </div>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={closeDialog} className="w-full">Continuar</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
