@@ -1,3 +1,52 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "youth-village",
+      "description": "A vibrant illustration of a virtual village for young users.",
+      "imageUrl": "https://images.unsplash.com/photo-1625517131943-0f7a51d6dcc8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx2aWxsYWdlJTIwaWxsdXN0cmF0aW9ufGVufDB8fHx8MTc2MDczOTU4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "village illustration"
+    },
+    {
+      "id": "avatar-1",
+      "description": "User avatar 1",
+      "imageUrl": "https://images.unsplash.com/photo-1695927621677-ec96e048dce2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9maWxlJTIwcGhvdG98ZW58MHx8fHwxNzYwNzM5NTgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "profile photo"
+    },
+    {
+      "id": "avatar-2",
+      "description": "User avatar 2",
+      "imageUrl": "https://images.unsplash.com/photo-1639747280929-e84ef392c69a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwcm9maWxlJTIwcGhvdG98ZW58MHx8fHwxNzYwNzM5NTgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "profile photo"
+    },
+    {
+      "id": "avatar-3",
+      "description": "User avatar 3",
+      "imageUrl": "https://images.unsplash.com/photo-1672863601285-253fc82db868?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9maWxlJTIwcGhvdG98ZW58MHx8fHwxNzYwNzM5NTgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "profile photo"
+    },
+    {
+      "id": "avatar-4",
+      "description": "User avatar 4",
+      "imageUrl": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9maWxlJTIwcGhvdG98ZW58MHx8fHwxNzYwNzM5NTgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "profile photo"
+    },
+    {
+      "id": "mission-financial",
+      "description": "Icon for financial missions",
+      "imageUrl": "https://images.unsplash.com/photo-1580508174046-170816f65662?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwaWdneSUyMGJhbmt8ZW58MHx8fHwxNzYwNzM5NTgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "piggy bank"
+    },
+    {
+      "id": "mission-community",
+      "description": "Icon for community missions",
+      "imageUrl": "https://images.unsplash.com/photo-1513171920216-2640b288471b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZW9wbGUlMjBncm91cHxlbnwwfHx8fDE3NjA3Mzk1ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "people group"
+    },
+    {
+      "id": "mission-growth",
+      "description": "Icon for personal growth missions",
+      "imageUrl": "https://images.unsplash.com/photo-1649255717215-cbc24b661bbb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzcHJvdXRpbmclMjBwbGFudHxlbnwwfHx8fDE3NjA3Mzk1ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sprouting plant"
+    }
+  ]
 }
