@@ -33,7 +33,7 @@ export type MarketItem = {
 };
 
 
-const ARTIFACT_SIZE = 64;
+const ARTIFACT_SIZE = 128;
 const WORLD_SIZE = 5000;
 const MIN_ZOOM = 0.4;
 const MAX_ZOOM = 3;
@@ -74,7 +74,7 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
     const m = new Map<string, MarketItem>();
     artifactData.forEach(a => m.set(a.key, a));
     return m;
-  }, [artifactData]);
+  }, []);
 
   const startPurchase = (key: string) => {
     const art = artifactsByKey.get(key);

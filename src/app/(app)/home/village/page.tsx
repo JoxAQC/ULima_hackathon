@@ -5,10 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useGameProgress } from '@/hooks/use-game-progress';
 import Village from '@/components/game/village';
 import GuidanceTool from '@/components/game/guidance-tool';
-import { Zap, ShieldCheck } from 'lucide-react';
+import { Zap, ShieldCheck, ArrowLeft } from 'lucide-react';
 import type { FC } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { missions } from '@/lib/game-data';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 interface StatCardProps {
   icon: React.ReactNode;
@@ -36,6 +38,15 @@ export default function Dashboard() {
 
   return (
     <div className="container mx-auto m max-w-6xl px-0 sm:px-4 py-4 space-y-6">
+      <div className="px-4 sm:px-0">
+        <Link href="/home">
+            <Button variant="outline">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Volver al Home
+            </Button>
+        </Link>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch px-4 sm:px-0">
         <Card>
           <CardHeader>
@@ -82,5 +93,3 @@ export default function Dashboard() {
     </div>
   );
 }
-
-    
