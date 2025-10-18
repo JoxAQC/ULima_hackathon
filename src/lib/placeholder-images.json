@@ -3,7 +3,7 @@
     {
       "id": "youth-village",
       "description": "Una ilustración de una aldea ecológica con turbinas eólicas y paneles solares.",
-      "imageUrl": "https://images.unsplash.com/photo-1622397333322-284c70289bb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlY28lMjB2aWxsYWdlJTIwaWxsdXN0cmF0aW9ufGVufDB8fHx8MTc2MDc0MDgwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/village.png",
       "imageHint": "eco village"
     },
     {
@@ -39,19 +39,19 @@
     {
       "id": "mission-iluminacion",
       "description": "Icono para misiones de iluminación.",
-      "imageUrl": "https://images.unsplash.com/photo-1620042999805-46b588921a2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2xhciUyMGxhbXB8ZW58MHx8fHwxNzYxMzU3NzIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.pexels.com/photos/30667614/pexels-photo-30667614.jpeg",
       "imageHint": "solar lamp"
     },
     {
       "id": "mission-climatizacion",
       "description": "Icono para misiones de climatización.",
-      "imageUrl": "https://images.unsplash.com/photo-1544654907-67436b9da805?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2xhciUyMHdhdGVyJTIwaGVhdGVyfGVufDB8fHx8MTc2MTM1NzcwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.pexels.com/photos/33044/sunflower-sun-summer-yellow.jpg",
       "imageHint": "solar heater"
     },
     {
       "id": "mission-micro-generacion",
       "description": "Icono para misiones de micro-generación.",
-      "imageUrl": "https://images.unsplash.com/photo-1509390193151-5a331a14643a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aW5kJTIwdHVyYmluZXxlbnwwfHx8fDE3NjEzNTc3ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.pexels.com/photos/39669/dandelion-sky-flower-nature-39669.jpeg",
       "imageHint": "wind turbine"
     }
   ]
