@@ -9,13 +9,14 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { communityMembers } from '@/lib/data';
 import Image from 'next/image';
 import { BarChart, CircleDollarSign, Leaf, Sparkles, Trophy } from 'lucide-react';
+import Link from 'next/link';
 
 function AdultHome() {
   const { user } = useUser();
 
   return (
     <div className="p-4 space-y-6">
-      <header>
+      <header className="text-center">
         <h1 className="text-2xl font-bold text-primary">Bienvenido, {user?.name}!</h1>
         <p className="text-muted-foreground">Tu resumen de impacto y ahorro sostenible.</p>
       </header>
@@ -73,34 +74,36 @@ function YouthHome() {
 
   return (
     <div className="space-y-6">
-      <header className="bg-village-background p-4 pt-8">
+      <header className="bg-village-background p-4 pt-8 text-center">
         <h1 className="text-2xl font-bold text-secondary-foreground">¡Bienvenido a tu Eco-Aldea, {user?.name}!</h1>
         <p className="text-muted-foreground">Sigue aprendiendo para hacer crecer tu comunidad.</p>
       </header>
 
       <div className="p-4 space-y-6">
-        <Card className="overflow-hidden">
-          {villageImage && (
-            <div className="relative h-48 w-full">
-              <Image src={villageImage.imageUrl} alt={villageImage.description} layout="fill" objectFit="cover" data-ai-hint={villageImage.imageHint} />
-            </div>
-          )}
-          <CardHeader>
-            <CardTitle>Progreso de mi Eco-Aldea</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-medium">Nivel {Math.floor((user?.progress.exp || 0) / 1000) + 1}</span>
-              <Progress value={(user?.progress.exp || 0) % 1000 / 10} />
-              <span className="text-sm font-medium">Nivel {Math.floor((user?.progress.exp || 0) / 1000) + 2}</span>
-            </div>
-            <p className="text-xs text-muted-foreground text-center mt-2">{user?.progress.exp} / {((Math.floor((user?.progress.exp || 0) / 1000) + 1) * 1000)} EXP para el siguiente nivel</p>
-          </CardContent>
-        </Card>
+        <Link href="/home/village">
+          <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+            {villageImage && (
+              <div className="relative h-48 w-full">
+                <Image src={villageImage.imageUrl} alt={villageImage.description} layout="fill" objectFit="cover" data-ai-hint={villageImage.imageHint} />
+              </div>
+            )}
+            <CardHeader>
+              <CardTitle>Progreso de mi Eco-Aldea</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-4">
+                <span className="text-sm font-medium">Nivel {Math.floor((user?.progress.exp || 0) / 1000) + 1}</span>
+                <Progress value={(user?.progress.exp || 0) % 1000 / 10} />
+                <span className="text-sm font-medium">Nivel {Math.floor((user?.progress.exp || 0) / 1000) + 2}</span>
+              </div>
+              <p className="text-xs text-muted-foreground text-center mt-2">{user?.progress.exp} / {((Math.floor((user?.progress.exp || 0) / 1000) + 1) * 1000)} EXP para el siguiente nivel</p>
+            </CardContent>
+          </Card>
+        </Link>
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2"><Trophy className="text-yellow-500" /> Ranking de la Comunidad</CardTitle>
+            <CardTitle className="flex items-center gap-2 justify-center"><Trophy className="text-yellow-500" /> Ranking de la Comunidad</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-4">

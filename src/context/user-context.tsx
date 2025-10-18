@@ -3,6 +3,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { missions } from '@/lib/data';
 
 export type User = {
   name: string;
@@ -50,16 +51,19 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const createUser = useCallback((name: string, age: number) => {
     const segment = age >= 18 ? 'Adult' : 'Youth';
+    const initialMissionId = segment === 'Adult' ? 2 : 1;
+    const initialMission = missions.find(m => m.id === initialMissionId);
+
     const newUser: User = {
       name,
       age,
       segment,
       progress: {
-        missionsCompleted: [],
-        exp: 0,
-        credits: 0,
-        financialSavings: 0,
-        co2Saved: 0,
+        missionsCompleted: initialMission ? [initialMission.id] : [],
+        exp: initialMission ? initialMission.exp : 0,
+        credits: initialMission ? initialMission.credits : 0,
+        financialSavings: initialMission ? initialMission.financialSavings : 0,
+        co2Saved: initialMission ? initialMission.co2Saved : 0,
       },
     };
     localStorage.setItem('hiri-user', JSON.stringify(newUser));

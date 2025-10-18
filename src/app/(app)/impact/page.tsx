@@ -3,9 +3,19 @@
 
 import { useUser } from '@/context/user-context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart as BarChartIcon, DollarSign, Award, Target, TrendingUp, Leaf } from 'lucide-react';
+import { BarChart as BarChartIcon, DollarSign, Award, Target, TrendingUp, Leaf, Lock } from 'lucide-react';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 import { missions } from '@/lib/data';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { cn } from '@/lib/utils';
+import {
+  Tooltip as ShadcnTooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 
 const savingsData = [
   { month: 'Ene', savings: 10 },
@@ -23,7 +33,7 @@ function AdultImpact() {
 
   return (
     <div className="p-4 space-y-6">
-      <header>
+      <header className="text-center">
         <h1 className="text-3xl font-bold">Mi Impacto</h1>
         <p className="text-muted-foreground">Mira el progreso que has logrado en tu viaje hacia la sostenibilidad.</p>
       </header>
@@ -49,7 +59,7 @@ function AdultImpact() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2"><TrendingUp /> Ahorro a lo Largo del Tiempo</CardTitle>
+          <CardTitle className="flex items-center gap-2 justify-center"><TrendingUp /> Ahorro a lo Largo del Tiempo</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={250}>
@@ -65,15 +75,15 @@ function AdultImpact() {
 
       <Card>
         <CardHeader>
-            <CardTitle>Misiones Completadas</CardTitle>
+            <CardTitle  className="text-center">Misiones Completadas</CardTitle>
         </CardHeader>
         <CardContent>
             {completedMissions.length > 0 ? (
-                <ul className="space-y-2">
+                <ul className="space-y-2 text-center">
                     {completedMissions.map(m => <li key={m.id} className="text-muted-foreground">{m.title}</li>)}
                 </ul>
             ) : (
-                <p className="text-muted-foreground">Aún no has completado misiones. ¡Ve a completar una!</p>
+                <p className="text-muted-foreground text-center">Aún no has completado misiones. ¡Ve a completar una!</p>
             )}
         </CardContent>
       </Card>
@@ -86,52 +96,91 @@ function YouthImpact() {
   const level = Math.floor((user?.progress.exp || 0) / 1000) + 1;
   const treesPlanted = Math.floor((user?.progress.co2Saved || 0) / 20);
 
+  const allPins = [
+      { id: 1, title: "Guardián Solar", missionId: 1, imageHint: "solar lamp" },
+      { id: 3, title: "Mago del Agua Caliente", missionId: 3, imageHint: "water heater" },
+      { id: 5, title: "Maestro del Viento", missionId: 5, imageHint: "wind energy" }
+  ];
+
+  const earnedPins = allPins.filter(pin => user?.progress.missionsCompleted.includes(pin.missionId));
+  const lockedPins = allPins.filter(pin => !user?.progress.missionsCompleted.includes(pin.missionId));
+
   return (
     <div className="p-4 space-y-6">
-      <header>
+      <header className="text-center">
         <h1 className="text-3xl font-bold">Mi Impacto</h1>
         <p className="text-muted-foreground">¡Mira tus increíbles logros!</p>
       </header>
 
       <div className="grid grid-cols-2 gap-4">
-        <Card className="bg-secondary/50 col-span-2">
+        <Card className="bg-secondary/50 col-span-2 text-center">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2"><Leaf className="h-4 w-4" /> Impacto Ambiental</CardTitle>
+            <CardTitle className="text-sm font-medium flex items-center gap-2 justify-center"><Leaf className="h-6 w-6" /> Impacto Ambiental</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{user?.progress.co2Saved || 0} kg de CO₂ ahorrados</p>
+            <p className="text-3xl font-bold">{user?.progress.co2Saved || 0} kg</p>
             <p className="text-sm text-muted-foreground">¡Equivalente a plantar {treesPlanted} {treesPlanted === 1 ? 'árbol' : 'árboles'}!</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="text-center">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2"><Award className="h-4 w-4" /> Nivel Actual</CardTitle>
+            <CardTitle className="text-sm font-medium flex items-center gap-2 justify-center"><Award className="h-6 w-6" /> Nivel</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{level}</p>
+            <p className="text-4xl font-bold">{level}</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="text-center">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2"><BarChartIcon className="h-4 w-4" /> EXP Total</CardTitle>
+            <CardTitle className="text-sm font-medium flex items-center gap-2 justify-center"><BarChartIcon className="h-6 w-6" /> EXP</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{user?.progress.exp}</p>
+            <p className="text-4xl font-bold">{user?.progress.exp}</p>
           </CardContent>
         </Card>
       </div>
 
        <Card>
         <CardHeader>
-            <CardTitle>Pines Ganados</CardTitle>
+            <CardTitle className="text-center">Pines Ganados</CardTitle>
         </CardHeader>
         <CardContent>
-            {user?.progress.missionsCompleted.length > 0 ? (
-                 <div className="flex gap-2">
-                    <div className="bg-yellow-200 text-yellow-800 p-2 rounded-full text-xs font-bold">Guardián Solar</div>
-                 </div>
-            ) : (
-                <p className="text-muted-foreground">¡Completa misiones para ganar pines!</p>
+            <TooltipProvider>
+                <div className="flex justify-center gap-4">
+                    {earnedPins.map(pin => {
+                        const pinImage = PlaceHolderImages.find(p => p.imageHint.includes(pin.imageHint));
+                        return (
+                             <ShadcnTooltip key={pin.id}>
+                                <TooltipTrigger>
+                                    <div className="relative w-20 h-20">
+                                        {pinImage && <Image src={pinImage.imageUrl} alt={pin.title} layout="fill" objectFit="cover" className="rounded-full border-4 border-yellow-500" data-ai-hint={pin.imageHint}/>}
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                <p>{pin.title}</p>
+                                </TooltipContent>
+                            </ShadcnTooltip>
+                        )
+                    })}
+                    {lockedPins.map(pin => (
+                         <ShadcnTooltip key={pin.id}>
+                            <TooltipTrigger>
+                                <div className="relative w-20 h-20">
+                                    <div className="w-full h-full rounded-full bg-muted flex items-center justify-center border-2 border-dashed">
+                                        <Lock className="h-8 w-8 text-muted-foreground"/>
+                                    </div>
+                                </div>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                            <p>Pin Bloqueado: {pin.title}</p>
+                            </TooltipContent>
+                        </ShadcnTooltip>
+                    ))}
+                </div>
+            </TooltipProvider>
+
+            {allPins.length === 0 && (
+                <p className="text-muted-foreground text-center">¡Completa misiones para ganar pines!</p>
             )}
         </CardContent>
       </Card>

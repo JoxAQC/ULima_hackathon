@@ -1,3 +1,4 @@
+
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -41,7 +42,7 @@ export default function MissionsPage() {
 
   return (
     <div className="p-4 space-y-8">
-      <header>
+      <header className="text-center">
         <h1 className="text-3xl font-bold">Misiones de Energía</h1>
         <p className="text-muted-foreground">¡Completa misiones para construir un futuro más sostenible y ganar recompensas!</p>
       </header>

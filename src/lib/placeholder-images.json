@@ -7,6 +7,12 @@
       "imageHint": "eco village"
     },
     {
+      "id": "youth-village-dynamic",
+      "description": "Una ilustración de una aldea ecológica con más detalle.",
+      "imageUrl": "https://images.unsplash.com/photo-1622397333322-284c70289bb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlY28lMjB2aWxsYWdlJTIwaWxsdXN0cmF0aW9ufGVufDB8fHx8MTc2MDc0MDgwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "eco village"
+    },
+    {
       "id": "avatar-1",
       "description": "User avatar 1",
       "imageUrl": "https://images.unsplash.com/photo-1695927621677-ec96e048dce2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9maWxlJTIwcGhvdG98ZW58MHx8fHwxNzYwNzM5NTgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
