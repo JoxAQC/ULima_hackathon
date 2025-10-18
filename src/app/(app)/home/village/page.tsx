@@ -3,13 +3,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useGameProgress } from '@/hooks/use-game-progress';
-import { missions } from '@/lib/game-data';
 import Village from '@/components/game/village';
 import GuidanceTool from '@/components/game/guidance-tool';
 import { Zap, ShieldCheck } from 'lucide-react';
 import type { FC } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import Image from 'next/image';
+import { missions } from '@/lib/game-data';
 
 interface StatCardProps {
   icon: React.ReactNode;
@@ -31,35 +30,13 @@ const StatCard: FC<StatCardProps> = ({ icon, label, value, color }) => (
 );
 
 export default function Dashboard() {
-  const { progress, completeMission, addScore, completeMissionPaid } = useGameProgress();
+  const { progress, addScore } = useGameProgress();
   const { toast } = useToast();
   const energy = progress.score;
 
-  const handleBuy = (missionId: string) => {
-    const mission = missions.find(m => m.id === missionId);
-    if (!mission) return;
-
-    if (progress.score < mission.points) {
-      toast({
-        title: '¡Energía Insuficiente!',
-        description: `Necesitas ${mission.points - progress.score} más de energía para construir esto.`,
-        variant: 'destructive',
-      });
-      return;
-    }
-    
-    completeMission(missionId);
-
-    toast({
-      title: '¡Mejora Construida!',
-      description: `Has construido ${mission.title} y tu aldea ha mejorado.`,
-    });
-  };
-
   return (
-    <div className="container mx-auto m max-w-6xl px-4 py-4 space-y-6">
-      {/* Estado de la Aldea */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+    <div className="container mx-auto m max-w-6xl px-0 sm:px-4 py-4 space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch px-4 sm:px-0">
         <Card>
           <CardHeader>
             <CardTitle className="font-headline text-lg">Estado de la Aldea</CardTitle>
@@ -91,7 +68,6 @@ export default function Dashboard() {
         )}
       </div>
 
-      {/* Mapa de la Aldea dentro de un card para un look consistente */}
       <Card className="overflow-hidden">
         <CardContent className="p-0">
           <Village
@@ -106,3 +82,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+    

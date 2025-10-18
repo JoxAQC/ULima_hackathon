@@ -1,9 +1,13 @@
+
 'use client';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { useGameProgress } from '@/hooks/use-game-progress';
+import { artifacts as artifactData } from '@/lib/village-data';
 
 interface VillageProps {
   energy: number;
@@ -20,22 +24,22 @@ type Placement = {
   flipH?: boolean;
 };
 
-const ARTIFACT_SIZE = 48;
+export type MarketItem = {
+  key: string;
+  name: string;
+  cost: number;
+  category: string;
+  imageUrl: string;
+};
+
+
+const ARTIFACT_SIZE = 64;
 const WORLD_SIZE = 5000;
 const MIN_ZOOM = 0.4;
 const MAX_ZOOM = 3;
 
 const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
-  // Use global game progress (energy) so the marketplace is consistent with the rest of the app
   const points = energy;
-
-  type MarketItem = {
-    key: string;
-    name: string;
-    cost: number;
-    category: string;
-    imageUrl: string;
-  };
 
   const [pendingArtifact, setPendingArtifact] = useState<null | MarketItem>(null);
   const [pendingRotation, setPendingRotation] = useState<number>(0);
@@ -60,58 +64,22 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
   const lastPointerRef = useRef({ x: 0, y: 0 });
   const touchesRef = useRef<any[]>([]);
 
-  const [camera, setCamera] = useState({ x: 0, y: 0, scale: 1 });
+  const [camera, setCamera] = useState({ x: -WORLD_SIZE / 2 + 300, y: -WORLD_SIZE / 2 + 300, scale: 0.8 });
 
-  useEffect(() => {
-    localStorage.setItem('village_points', String(points));
-  }, [points]);
   useEffect(() => {
     localStorage.setItem('village_placements', JSON.stringify(placements));
   }, [placements]);
 
-  const artifacts = useMemo<MarketItem[]>(() => {
-    // Items del mercado (independientes de misiones)
-    return [
-      { key: 'solar-lamp',   name: 'Lámpara Solar',         cost: 100, category: 'Luz',            imageUrl: '/lamparasolar.png' },
-      { key: 'water-filter', name: 'Filtro de Agua Casero', cost: 100, category: 'Agua',           imageUrl: '/filtroagua.png' },
-      { key: 'mud-stove',    name: 'Estufa de Barro',       cost: 150, category: 'Cocina',         imageUrl: '/estufabarro.png' },
-      { key: 'composting',   name: 'Pila de Compost',       cost: 75,  category: 'Sostenibilidad', imageUrl: '/composta.png' },
-      { key: 'casa',         name: 'Casa',                  cost: 200, category: 'Edificios',      imageUrl: '/casa.png' },
-      { key: 'jardin-flores',name: 'Jardín de Flores',      cost: 60,  category: 'Jardín',         imageUrl: '/jardinflores.png' },
-      // Nuevos elementos
-      { key: 'auquenidos',             name: 'Auquénidos',               cost: 120, category: 'Animales',        imageUrl: '/auquenidos.png' },
-      { key: 'caballero',              name: 'Caballero',                cost: 180, category: 'Personajes',      imageUrl: '/caballero.png' },
-      { key: 'chaman-inca',            name: 'Chamán Inca',              cost: 160, category: 'Personajes',      imageUrl: '/chaman_inca.png' },
-      { key: 'comerciante',            name: 'Comerciante',              cost: 140, category: 'Personajes',      imageUrl: '/comerciante.png' },
-      { key: 'comerciante-medico',     name: 'Comerciante Médico',       cost: 150, category: 'Personajes',      imageUrl: '/comerciante_medico.png' },
-      { key: 'entrenamiento-inca',     name: 'Entrenamiento Inca',       cost: 130, category: 'Entrenamiento',   imageUrl: '/entrenamiento_inca.png' },
-      { key: 'entrenamiento-medieval', name: 'Entrenamiento Medieval',   cost: 130, category: 'Entrenamiento',   imageUrl: '/entrenamiento_medieval.png' },
-      { key: 'fuente-agua',            name: 'Fuente de Agua',           cost: 110, category: 'Decoración',      imageUrl: '/fuente_agua.png' },
-      { key: 'fuente-chavin',          name: 'Fuente Chavín',            cost: 115, category: 'Decoración',      imageUrl: '/fuente_chavin.png' },
-      { key: 'guardian-inca',          name: 'Guardián Inca',            cost: 170, category: 'Personajes',      imageUrl: '/guardian_inca.png' },
-      { key: 'mago',                   name: 'Mago',                     cost: 200, category: 'Personajes',      imageUrl: '/mago.png' },
-      { key: 'vaca-chanchos',          name: 'Vaca y Chanchos',          cost: 140, category: 'Animales',        imageUrl: '/vaca_chanchos.png' },
-      // Nuevos elementos adicionales
-      { key: 'hulca',                  name: 'Hulca',                    cost: 150, category: 'Personajes',      imageUrl: '/hulca.png' },
-      { key: 'condor',                 name: 'Cóndor',                   cost: 130, category: 'Animales',        imageUrl: '/condor.png' },
-      { key: 'estatua-dragon',         name: 'Estatua de Dragón',        cost: 180, category: 'Decoración',      imageUrl: '/estatua_dragon.png' },
-      { key: 'balsa-totora',           name: 'Balsa de Totora',          cost: 140, category: 'Transporte',      imageUrl: '/balsa_totora.png' },
-      { key: 'mercado',                name: 'Mercado',                  cost: 160, category: 'Edificios',       imageUrl: '/mercado.png' },
-      { key: 'templo-inca',            name: 'Templo Inca',              cost: 220, category: 'Edificios',       imageUrl: '/templo_inca.png' },
-    ];
-  }, []);
-
   const artifactsByKey = useMemo(() => {
     const m = new Map<string, MarketItem>();
-    artifacts.forEach(a => m.set(a.key, a));
+    artifactData.forEach(a => m.set(a.key, a));
     return m;
-  }, [artifacts]);
+  }, [artifactData]);
 
-  // Start purchase: deduct energy immediately
   const startPurchase = (key: string) => {
     const art = artifactsByKey.get(key);
     if (!art) return;
-    if (points < art.cost) return; // require enough global energy
+    if (points < art.cost) return;
     onDeduct(art.cost);
     setPendingArtifact(art);
     setPendingRotation(0);
@@ -138,8 +106,8 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
     const rect = mapRef.current!.getBoundingClientRect();
     const sx = (event as any).clientX - rect.left;
     const sy = (event as any).clientY - rect.top;
-    const wx = (sx - camera.x) / camera.scale - ARTIFACT_SIZE / 2;
-    const wy = (sy - camera.y) / camera.scale - ARTIFACT_SIZE / 2;
+    const wx = (sx - camera.x) / camera.scale;
+    const wy = (sy - camera.y) / camera.scale;
     return clampToWorld(wx, wy);
   };
 
@@ -159,7 +127,13 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
     setHoverPos(getWorldPosFromEvent(event));
   };
 
-  const clearMap = () => setPlacements([]);
+  const clearMap = () => {
+     placements.forEach(p => {
+      const artifactDef = artifactsByKey.get(p.key);
+      if (artifactDef) onRefund(artifactDef.cost);
+    });
+    setPlacements([]);
+  }
 
   const deleteArtifact = (artifactId: number) => {
     const artifact = placements.find(p => p.id === artifactId);
@@ -201,7 +175,6 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
     setIsDraggingArtifact(false);
   };
 
-  // Rotar y espejar en modo edición
   const rotateSelected = (delta: number) => {
     if (selectedArtifact == null) return;
     setPlacements(prev => prev.map(p => p.id === selectedArtifact ? { ...p, rot: (((p.rot ?? 0) + delta) % 360 + 360) % 360 } : p));
@@ -211,7 +184,6 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
     setPlacements(prev => prev.map(p => p.id === selectedArtifact ? { ...p, flipH: !p.flipH } : p));
   };
 
-  // Atajos de teclado: Q/E rotar, R reset preview, F espejo horizontal
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const key = e.key.toLowerCase();
@@ -232,7 +204,6 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
     return () => window.removeEventListener('keydown', onKey);
   }, [pendingArtifact, selectedArtifact]);
 
-  // Pan/zoom mouse
   const onMouseDown = (e: React.MouseEvent) => {
     if (pendingArtifact || editMode) return;
     if ((e as any).button !== 0) return;
@@ -277,9 +248,8 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
     const rect = mapRef.current!.getBoundingClientRect();
     zoomAtPoint(1 / 1.2, rect.width / 2, rect.height / 2);
   };
-  const resetView = () => setCamera({ x: 0, y: 0, scale: 1 });
+  const resetView = () => setCamera({ x: -WORLD_SIZE / 2 + 300, y: -WORLD_SIZE / 2 + 300, scale: 0.8 });
 
-  // Touch pan/pinch
   const onTouchStart = (e: React.TouchEvent) => {
     if (pendingArtifact) return;
     const touches = Array.from(e.touches);
@@ -313,39 +283,141 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
   };
   const onTouchEnd = () => { draggingRef.current = false; touchesRef.current = []; };
 
-  // Render
   return (
-    <div className="relative w-full h-full flex flex-col gap-4">
-      {/* Herramientas */}
+    <div className="relative w-full h-[70vh] flex flex-col gap-4">
+        <style jsx>{`
+            .toolbar {
+                position: absolute;
+                top: 0.5rem;
+                left: 0.5rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                z-index: 20;
+            }
+            .toolbar button {
+                padding: 0.5rem 1rem;
+                border: 1px solid hsl(var(--border));
+                background-color: hsl(var(--card));
+                color: hsl(var(--card-foreground));
+                border-radius: var(--radius);
+                font-size: 0.875rem;
+                cursor: pointer;
+            }
+            .toolbar button:hover {
+                background-color: hsl(var(--muted));
+            }
+            .toolbar button.edit-mode-active {
+                background-color: hsl(var(--primary));
+                color: hsl(var(--primary-foreground));
+            }
+             .toolbar button.cancel {
+                background-color: hsl(var(--destructive) / 0.8);
+                color: hsl(var(--destructive-foreground));
+            }
+             .toolbar button.delete-btn {
+                background-color: hsl(var(--destructive));
+                color: hsl(var(--destructive-foreground));
+            }
+
+
+            .game-area {
+                flex-grow: 1;
+                position: relative;
+                overflow: hidden;
+                background-color: #386641;
+                cursor: grab;
+            }
+            .game-area.dragging {
+                cursor: grabbing;
+            }
+            .world {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-image: url('/world.png');
+                background-size: cover;
+                transform-origin: 0 0;
+            }
+            .artifact {
+                width: ${ARTIFACT_SIZE}px;
+                height: ${ARTIFACT_SIZE}px;
+                user-select: none;
+                -webkit-user-drag: none;
+            }
+            .artifact.editable {
+                cursor: pointer;
+            }
+            .artifact.selected {
+                outline: 2px dashed hsl(var(--primary));
+                outline-offset: 2px;
+            }
+            .artifact.preview {
+                opacity: 0.7;
+                pointer-events: none;
+            }
+            .place-hint, .edit-hint {
+                position: absolute;
+                bottom: 4rem;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: hsla(var(--background), 0.8);
+                padding: 0.5rem 1rem;
+                border-radius: var(--radius);
+                z-index: 10;
+                pointer-events: none;
+            }
+            .zoom-controls {
+                position: absolute;
+                bottom: 4rem;
+                right: 0.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                z-index: 20;
+            }
+            .zoom-controls button {
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 9999px;
+                border: 1px solid hsl(var(--border));
+                background-color: hsl(var(--card));
+                color: hsl(var(--card-foreground));
+                font-size: 1.25rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        `}</style>
       <div className="toolbar">
-        <button onClick={() => { setEditMode(!editMode); setSelectedArtifact(null); setPendingArtifact(null); }} className={editMode ? 'edit-mode-active' : ''} title="Activar modo edición para mover/eliminar artefactos">{editMode ? '✓ Modo Edición' : '✏️ Editar'}</button>
-        <button onClick={clearMap} title="Quitar todos los artefactos del mapa">Limpiar mapa</button>
+        <Button onClick={() => { setEditMode(!editMode); setSelectedArtifact(null); if (pendingArtifact) cancelPlacement(); }} className={cn(editMode && 'bg-primary text-primary-foreground hover:bg-primary/90')} title="Activar modo edición para mover/eliminar artefactos">{editMode ? '✓ Modo Edición' : '✏️ Editar'}</Button>
+        <Button variant="outline" onClick={clearMap} title="Quitar todos los artefactos del mapa">Limpiar</Button>
         {pendingArtifact && (
           <>
-            <button className="cancel" onClick={cancelPlacement} title="Cancelar y reembolsar">Cancelar colocación ({pendingArtifact.name})</button>
-            <button onClick={() => setPendingRotation(r => (((r - 15) % 360) + 360) % 360)} title="Rotar 15° a la izquierda">↺ Rotar</button>
-            <button onClick={() => setPendingRotation(r => (((r + 15) % 360) + 360) % 360)} title="Rotar 15° a la derecha">↻ Rotar</button>
-            <button onClick={() => setPendingFlipH(f => !f)} title="Espejo horizontal">⇋ Espejo</button>
+            <Button variant="destructive" onClick={cancelPlacement} title="Cancelar y reembolsar">Cancelar</Button>
+            <Button variant="outline" onClick={() => setPendingRotation(r => (((r - 15) % 360) + 360) % 360)} title="Rotar 15° a la izquierda (Q)">↺</Button>
+            <Button variant="outline" onClick={() => setPendingRotation(r => (((r + 15) % 360) + 360) % 360)} title="Rotar 15° a la derecha (E)">↻</Button>
+            <Button variant="outline" onClick={() => setPendingFlipH(f => !f)} title="Espejo horizontal (F)">⇋</Button>
           </>
         )}
         {editMode && selectedArtifact && (
           <>
-            <button className="delete-btn" onClick={() => deleteArtifact(selectedArtifact)} title="Eliminar artefacto seleccionado y recuperar puntos">🗑️ Eliminar</button>
-            <button onClick={() => rotateSelected(-15)} title="Rotar seleccionado 15° a la izquierda">↺ Rotar</button>
-            <button onClick={() => rotateSelected(15)} title="Rotar seleccionado 15° a la derecha">↻ Rotar</button>
-            <button onClick={flipSelected} title="Espejo horizontal del seleccionado">⇋ Espejo</button>
+            <Button variant="destructive" onClick={() => deleteArtifact(selectedArtifact)} title="Eliminar artefacto seleccionado y recuperar puntos">🗑️ Eliminar</Button>
+            <Button variant="outline" onClick={() => rotateSelected(-15)} title="Rotar seleccionado 15° a la izquierda (Q)">↺</Button>
+            <Button variant="outline" onClick={() => rotateSelected(15)} title="Rotar seleccionado 15° a la derecha (E)">↻</Button>
+            <Button variant="outline" onClick={flipSelected} title="Espejo horizontal del seleccionado (F)">⇋</Button>
           </>
         )}
       </div>
 
       <div
         ref={mapRef}
-        className={`game-area ${draggingRef.current ? 'dragging' : ''}`}
+        className={cn("game-area", draggingRef.current && "dragging", (pendingArtifact || editMode) && "cursor-crosshair")}
         onClick={handleMapClick as any}
         onMouseMove={(e) => { if (isDraggingArtifact) { handleArtifactMouseMove(e as any); } else { handleMapMove(e as any); onMouseMove(e as any); } }}
         onMouseDown={onMouseDown as any}
         onMouseUp={(e) => { handleArtifactMouseUp(e as any); endDrag(); }}
-        onMouseLeave={(e) => { handleArtifactMouseUp(e as any); endDrag(); }}
+        onMouseLeave={(e) => { handleArtifactMouseUp(e as any); endDrag(); setHoverPos(null) }}
         onWheel={onWheel as any}
         onTouchStart={onTouchStart as any}
         onTouchMove={onTouchMove as any}
@@ -358,14 +430,14 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
             return (
               <div
                 key={p.id}
-                className={`artifact ${editMode ? 'editable' : ''} ${selectedArtifact === p.id ? 'selected' : ''} relative overflow-hidden`}
+                className={cn(`artifact relative overflow-hidden`, editMode && 'editable', selectedArtifact === p.id && 'selected')}
                 style={{ left: p.x, top: p.y, position: 'absolute', transform: `${p.flipH ? 'scaleX(-1) ' : ''}rotate(${p.rot ?? 0}deg)`, transformOrigin: 'center' }}
                 aria-label={`${p.key} colocado`}
                 onClick={(e) => handleArtifactClick(e as any, p.id)}
                 onMouseDown={(e) => handleArtifactMouseDown(e as any, p.id)}
               >
                 {art ? (
-                  <Image src={art.imageUrl} alt={art.name} fill className="object-contain" />
+                  <Image src={art.imageUrl} alt={art.name} fill className="object-contain pointer-events-none" />
                 ) : (
                   '🔧'
                 )}
@@ -381,7 +453,7 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
         </div>
 
         {pendingArtifact && <div className="place-hint">Haz clic para colocar: {pendingArtifact.name}</div>}
-        {editMode && <div className="edit-hint">{selectedArtifact ? '✏️ Clic en "Eliminar" para borrar' : '✏️ Modo edición: Haz clic en un artefacto para seleccionarlo'}</div>}
+        {editMode && <div className="edit-hint">{selectedArtifact ? 'Puedes mover, rotar o eliminar el objeto seleccionado' : 'Modo edición: Haz clic en un objeto para seleccionarlo'}</div>}
 
         <div className="zoom-controls" onMouseDown={(e) => e.stopPropagation()} onClick={(e) => e.stopPropagation()}>
           <button aria-label="Acercar" onClick={zoomIn}>＋</button>
@@ -390,11 +462,10 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
         </div>
       </div>
 
-      {/* Mercado en menú hamburguesa (hoja inferior), trigger debajo del mapa */}
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center absolute bottom-0 left-1/2 -translate-x-1/2">
         <Sheet open={marketOpen} onOpenChange={setMarketOpen}>
           <SheetTrigger asChild>
-            <Button className="font-headline mb-2" disabled={!!pendingArtifact || editMode}>
+            <Button className="font-headline mb-2 shadow-lg" disabled={!!pendingArtifact || editMode}>
               🏪 Mercado
             </Button>
           </SheetTrigger>
@@ -402,17 +473,16 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
             <SheetHeader>
               <SheetTitle>Mercado</SheetTitle>
             </SheetHeader>
-            {/* Agrupar por categoría en listas compactas */}
-            {Array.from(new Set(artifacts.map(a => a.category))).map((cat: string) => (
+            {Array.from(new Set(artifactData.map(a => a.category))).map((cat: string) => (
               <div key={cat} className="space-y-3">
                 <h3 className="font-headline font-bold text-base">{cat}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {artifacts.filter(a => a.category === cat).map(a => {
+                  {artifactData.filter(a => a.category === cat).map(a => {
                     const canAfford = points >= a.cost;
                     return (
                       <div key={a.key} className="flex items-center gap-3 rounded-md border bg-card/80 p-3">
-                        <div className="relative w-8 h-8 shrink-0 rounded-md overflow-hidden border">
-                          <Image src={a.imageUrl} alt={a.name} fill className="object-cover" />
+                        <div className="relative w-12 h-12 shrink-0 rounded-md overflow-hidden border bg-white">
+                          <Image src={a.imageUrl} alt={a.name} fill className="object-contain" />
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="font-headline text-sm font-bold truncate">{a.name}</div>
@@ -440,3 +510,5 @@ const Village = ({ energy, onDeduct, onRefund }: VillageProps) => {
 };
 
 export default Village;
+
+    
