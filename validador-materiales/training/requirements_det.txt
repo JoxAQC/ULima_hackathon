@@ -1,0 +1,8 @@
+tensorflow==2.15.0
+mediapipe-model-maker==0.1.0
+numpy
+pillow
+matplotlib
+opencv-python
+tensorflow-datasets
+tensorflow-hub

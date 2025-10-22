@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>Validador de Misión (Offline)</title>
+    <style>
+      body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif; margin:0; padding:24px; background:#f7faf9}
+      .card{max-width:980px; margin:0 auto; background:#fff; border-radius:16px; box-shadow:0 6px 20px rgba(16,24,40,.1); padding:20px}
+      .row{display:flex; gap:16px; flex-wrap:wrap}
+      .col{flex:1 1 280px}
+      .thumb{width:100%; max-height:220px; object-fit:cover; border-radius:12px; border:1px solid #e5e7eb}
+      .pill{display:inline-block; background:#ecfdf5; color:#065f46; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700}
+      .btn{background:#047857; color:#fff; border:0; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer}
+      .btn:disabled{opacity:.6; cursor:not-allowed}
+      .muted{color:#6b7280}
+      .ok{color:#065f46}
+      .warn{color:#92400e}
+      .err{color:#991b1b}
+      ul{padding-left:18px}
+      code{background:#f3f4f6; padding:2px 6px; border-radius:6px}
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>🔍 Validador de Progreso de Misión (Offline)</h1>
+      <p class="muted">Sube 1–3 fotos del resultado final. El validador usa un modelo TFLite local para comparar con imágenes/plantillas guía de la misión seleccionada.</p>
+
+      <div class="row" style="margin:16px 0 8px">
+        <div class="col">
+          <label>Elige la misión:</label>
+          <select id="missionSelect">
+            <option value="horno_solar">Horno Solar Casero</option>
+            <option value="luz_botella">Lámpara de Botella Solar</option>
+          </select>
+        </div>
+        <div class="col">
+          <label>Sube tus fotos (1–3):</label>
+          <input id="fileInput" type="file" accept="image/*" multiple />
+        </div>
+        <div class="col" style="display:flex; align-items:flex-end">
+          <button id="btnRun" class="btn" disabled>Validar Evidencia</button>
+        </div>
+      </div>
+
+      <div class="row" id="previewRow"></div>
+
+      <hr/>
+      <p class="pill">100% Offline</p>
+      <div id="status" class="muted">Cargando recursos de visión…</div>
+
+      <h2>Resultado</h2>
+      <div id="result"></div>
+
+      <details style="margin-top:16px">
+        <summary>¿Cómo agregar tu modelo y plantillas?</summary>
+        <ol>
+          <li>Coloca tu modelo TFLite en <code>/public/models/&lt;mission&gt;/model.tflite</code>.</li>
+          <li>Coloca <code>labels.json</code> con las clases u objetos detectables.</li>
+          <li>Edita <code>config.json</code> con <code>type</code> (<em>object_detection</em> o <em>image_classification</em>), <code>expected</code> y <code>thresholds</code>.</li>
+          <li>Ejecuta <code>npm run vision:prepare</code> para copiar los WASM de MediaPipe a <code>/public/mediapipe</code>.</li>
+        </ol>
+      </details>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

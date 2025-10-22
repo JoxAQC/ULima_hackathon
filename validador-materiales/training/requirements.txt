@@ -1,0 +1,12 @@
+# Este archivo queda como guía general. NO lo instales directamente.
+# En su lugar, usa uno de estos entornos separados:
+# - requirements_det.txt  (Detección de objetos con MediaPipe Model Maker)
+# - requirements_cls.txt  (Clasificación de imágenes con Keras + TFLite Converter)
+
+tensorflow==2.15.0
+mediapipe-model-maker==0.1.0
+tflite-model-maker==0.4.0
+numpy
+pillow
+matplotlib
+scikit-learn
