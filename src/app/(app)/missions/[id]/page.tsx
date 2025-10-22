@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Volume2, CheckCircle, Sparkles, Leaf, Award } from 'lucide-react';
+import MaterialsValidator from '@/components/missions/materials-validator';
 import { useUser } from '@/context/user-context';
 import { useToast } from "@/hooks/use-toast"
 import {
@@ -29,6 +30,9 @@ export default function MissionDetailPage() {
   const { user, updateProgress } = useUser();
   const [showCompletionDialog, setShowCompletionDialog] = useState(false);
   const [completionMessage, setCompletionMessage] = useState('');
+  const [showValidator, setShowValidator] = useState(false);
+  const [validationHtml, setValidationHtml] = useState('');
+  const [validationOk, setValidationOk] = useState(false);
 
 
   if (!mission || !user) {
@@ -60,23 +64,32 @@ export default function MissionDetailPage() {
     }
   };
   
-  const handleCompleteMission = () => {
-    if (!isCompleted) {
-      updateProgress(mission.id, mission.exp, mission.credits, mission.financialSavings, mission.co2Saved);
-      
-      let rewardMessage = `¡Has ganado ${mission.exp} EXP y ${mission.credits} créditos!`;
+  const missionsRequiringValidation = new Set([1,3,5]);
 
-      if (user.segment === 'Adult') {
-        rewardMessage = `¡Felicidades! Has ahorrado S/ ${mission.financialSavings.toFixed(2)} y evitado ${mission.co2Saved}kg de CO2.`;
-      } else {
-        const trees = Math.floor(mission.co2Saved / 20) || 1; 
-        rewardMessage = `¡Genial! Tu proyecto evitó ${mission.co2Saved}kg de CO2, ¡equivale a plantar ${trees} ${trees > 1 ? 'árboles' : 'árbol'}!`;
-      }
-      
-      setCompletionMessage(rewardMessage);
-      setShowCompletionDialog(true);
+  const handleCompleteMission = () => {
+    if (isCompleted) return;
+    const needsValidation = missionsRequiringValidation.has(mission.id);
+    if (needsValidation && !validationOk) {
+      // Requiere validación previa
+      setShowValidator(true);
+      return;
     }
+    // Sin validación requerida o ya validado
+    finalizeCompletion();
   };
+
+  function finalizeCompletion() {
+    updateProgress(mission!.id, mission!.exp, mission!.credits, mission!.financialSavings, mission!.co2Saved);
+    let rewardMessage = `¡Has ganado ${mission!.exp} EXP y ${mission!.credits} créditos!`;
+    if (user!.segment === 'Adult') {
+      rewardMessage = `¡Felicidades! Has ahorrado S/ ${mission!.financialSavings.toFixed(2)} y evitado ${mission!.co2Saved}kg de CO2.`;
+    } else {
+      const trees = Math.floor(mission!.co2Saved / 20) || 1; 
+      rewardMessage = `¡Genial! Tu proyecto evitó ${mission!.co2Saved}kg de CO2, ¡equivale a plantar ${trees} ${trees > 1 ? 'árboles' : 'árbol'}!`;
+    }
+    setCompletionMessage(rewardMessage);
+    setShowCompletionDialog(true);
+  }
 
   const closeDialog = () => {
     setShowCompletionDialog(false);
@@ -121,8 +134,34 @@ export default function MissionDetailPage() {
             ))}
           </Accordion>
         </CardContent>
-        <CardFooter>
-          <Button className="w-full" onClick={handleCompleteMission} disabled={isCompleted}>
+        <CardFooter className="flex flex-col gap-4">
+          {showValidator && (
+            <div className="w-full border rounded p-3">
+              <h4 className="font-semibold mb-2">Validación por fotos</h4>
+              <MaterialsValidator
+                missionId={mission.id}
+                onCancel={()=> setShowValidator(false)}
+                onValidated={(res)=>{
+                  setValidationHtml(res.detailsHtml);
+                  setValidationOk(res.ok);
+                }}
+              />
+              {validationHtml && (
+                <div className="prose prose-sm max-w-none mt-3" dangerouslySetInnerHTML={{ __html: validationHtml }} />
+              )}
+            </div>
+          )}
+          {missionsRequiringValidation.has(mission.id) && (
+            <Button variant="outline" className="w-full" onClick={() => setShowValidator(true)} disabled={isCompleted}>
+              Validar por fotos
+            </Button>
+          )}
+          <Button
+            className="w-full"
+            onClick={handleCompleteMission}
+            disabled={isCompleted || (missionsRequiringValidation.has(mission.id) && !validationOk)}
+            title={missionsRequiringValidation.has(mission.id) && !validationOk ? 'Primero completa la validación' : undefined}
+          >
             {isCompleted ? <><CheckCircle className="mr-2 h-4 w-4" /> Misión Completada</> : 'Completar Misión'}
           </Button>
         </CardFooter>

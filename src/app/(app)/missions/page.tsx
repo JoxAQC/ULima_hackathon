@@ -8,7 +8,7 @@ import { missions } from '@/lib/data';
 import { useUser } from '@/context/user-context';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { SmartAssistant } from '@/components/missions/smart-assistant';
+import MissionGenerator from '@/components/missions/mission-generator';
 
 export default function MissionsPage() {
   const { user } = useUser();
@@ -47,7 +47,7 @@ export default function MissionsPage() {
         <p className="text-muted-foreground">¡Completa misiones para construir un futuro más sostenible y ganar recompensas!</p>
       </header>
       
-      <SmartAssistant allMissions={availableMissions} />
+  <MissionGenerator />
 
       <div className="space-y-8">
         {Object.entries(modules).map(([moduleTitle, missionsInModule]) => {

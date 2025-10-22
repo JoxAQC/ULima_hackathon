@@ -35,6 +35,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Enable importing plain text files (e.g., .txt) as strings, used by the offline generator
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.txt$/i,
+      type: 'asset/source',
+    });
+    return config;
+  },
 };
 
 export default nextConfig;

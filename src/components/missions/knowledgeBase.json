@@ -1,0 +1,257 @@
+[
+  {
+    "id": 1,
+    "materiales_clave": "leña, caja de cartón, pilas",
+    "vivienda": "casa",
+    "tipo_mision": "Cocina Solar y Eficiencia Energética",
+    "mision_titulo": "Construye un Horno Solar Casero",
+    "instrucciones_basicas": "Usa la caja de cartón como estructura. Forra el interior con papel de aluminio o ceniza blanca para reflejar la luz solar. Esto crea calor sin necesidad de leña. Guarda las pilas.",
+    "enfasis_renovable": "Fuente de calor 100% solar, renovable y gratuita. Elimina la dependencia de combustibles contaminantes.",
+    "ahorro_dinero_estimado": "Ahorro de $5 a $15 USD mensuales en leña o gas.",
+    "ahorro_co2_estimado": "Reducción de 2 a 10 kg de $\\text{CO}_2$ al mes (por la leña sustituida).",
+    "pasos": [
+      "Refuerza la caja con cinta; forra el interior con aluminio (brillante hacia adentro) y sella juntas.",
+      "Añade tapa transparente (vidrio/acetato) para efecto invernadero; inclina 10–15° al sol.",
+      "Usa olla oscura con tapa; precalienta 15–20 min y gira la caja según el sol.",
+      "Supervisa temperatura y tiempos; no dejes desatendido al alcance de niños."
+    ]
+  },
+  {
+    "id": 2,
+    "materiales_clave": "botellas de plástico, agua, cloro, pila",
+    "vivienda": "casa, apartamento",
+    "tipo_mision": "Iluminación Solar Pasiva",
+    "mision_titulo": "Lámpara de Botella Solar ('Luz de Botella')",
+    "instrucciones_basicas": "Llena botellas de plástico transparente con agua y cloro. Fíjalas en el techo o ventana. La luz del sol se refracta, iluminando el interior sin electricidad.",
+    "enfasis_renovable": "Usa la energía solar pasiva para iluminar el día. Ahorro directo en la factura de luz.",
+    "ahorro_dinero_estimado": "Ahorro de $3 a $8 USD mensuales en electricidad.",
+    "ahorro_co2_estimado": "Reducción de hasta 5 kg de $\\text{CO}_2$ al mes.",
+    "pasos": [
+      "Llena botellas PET transparentes con agua y 2–3 gotas de cloro por litro; cierra bien.",
+      "Abre un orificio en techo/lámina; inserta la botella hasta la mitad y sella con silicona.",
+      "Fija con remaches o tornillos; limpia la parte exterior para máxima refracción.",
+      "Reemplaza el agua cada 3–6 meses para mantener claridad y desinfección."
+    ]
+  },
+  {
+    "id": 3,
+    "materiales_clave": "ladrillos, latas, leña, trapos viejos",
+    "vivienda": "casa, rancho",
+    "tipo_mision": "Eficiencia en la Combustión y Reserva",
+    "mision_titulo": "Mejora tu Estufa de Leña (Estufa Rocket de Bajo Costo)",
+    "instrucciones_basicas": "Construye un conducto vertical con ladrillos o latas para concentrar el calor de la leña. Usa trapos viejos para sellar grietas y aumentar la eficiencia.",
+    "enfasis_renovable": "Aumenta la eficiencia, consume menos biomasa (leña) y reduce la emisión de humo contaminante.",
+    "ahorro_dinero_estimado": "Ahorro de hasta el 50% en consumo de leña.",
+    "ahorro_co2_estimado": "Reducción de partículas contaminantes y $\\text{CO}_2$.",
+    "pasos": [
+      "Arma un conducto en L con ladrillos/latas; diámetro 10–12 cm; base estable.",
+      "Aísla alrededor con ceniza/arena (o perlita) para conservar calor; deja tiro libre.",
+      "Coloca rejilla/soporte para olla a 1–2 cm del conducto; alimenta con leña seca.",
+      "Sella grietas y canaliza humo hacia afuera si es interior para reducir humo."
+    ]
+  },
+  {
+    "id": 4,
+    "materiales_clave": "caja de cartón, hojas de papel, pegamento, periódico",
+    "vivienda": "apartamento, casa",
+    "tipo_mision": "Aislamiento y Conservación de Calor",
+    "mision_titulo": "Aislamiento Térmico de Ventanas y Puertas",
+    "instrucciones_basicas": "Usa el cartón para cortar paneles de ventana/puerta. Rellena grietas con periódico. Esto reduce la pérdida/entrada de calor.",
+    "enfasis_renovable": "La conservación de energía es clave. Reduciendo la necesidad de usar calefacción o refrigeración, ahorras energía generada por la red.",
+    "ahorro_dinero_estimado": "Ahorro del 5% al 10% en costos de calefacción/refrigeración.",
+    "ahorro_co2_estimado": "Reducción de la demanda de energía primaria.",
+    "pasos": [
+      "Corta paneles de cartón a medida; coloca periódico como relleno en huecos.",
+      "Fija con cinta o listones; añade cortinas gruesas o mantas en ventanas.",
+      "Sella marcos con silicona/burletes caseros para reducir infiltraciones.",
+      "Verifica corrientes de aire con una vela e identifica puntos a reforzar."
+    ]
+  },
+  {
+    "id": 5,
+    "materiales_clave": "botella PET, manguera negra, madera, clavos, vidrio",
+    "vivienda": "casa, rancho",
+    "tipo_mision": "Agua Caliente Solar",
+    "mision_titulo": "Calentador Solar de Botellas y Manguera",
+    "instrucciones_basicas": "Construye un panel con botellas PET alineadas. Pasa manguera negra serpenteando detrás. Coloca en techo inclinado al sol. Conecta entrada de agua fría y salida a un termo.",
+    "enfasis_renovable": "Aprovecha el sol para calentar agua sin electricidad ni gas.",
+    "ahorro_dinero_estimado": "Ahorro de $5–$20 USD/mes según uso.",
+    "ahorro_co2_estimado": "Reduce CO2 al reemplazar gas/eléctrica para agua caliente.",
+    "pasos": [
+      "Arma un marco de madera; alinea botellas PET y fija; pinta manguera negra.",
+      "Pasa la manguera en zigzag detrás de las botellas; sella uniones.",
+      "Instala inclinado al norte/sol; conecta entrada de agua fría y salida a termo.",
+      "Desairea el circuito y aísla tramos expuestos para mejorar rendimiento."
+    ]
+  },
+  {
+    "id": 6,
+    "materiales_clave": "cartón, papel aluminio, vidrio, cinta, tijeras",
+    "vivienda": "apartamento, casa",
+    "tipo_mision": "Cocción Solar",
+    "mision_titulo": "Horno Solar Tipo Caja Mejorado",
+    "instrucciones_basicas": "Arma caja doble con cartón. Forra interior con aluminio. Tapa con vidrio para efecto invernadero. Sella juntas con cinta para retener calor.",
+    "enfasis_renovable": "Cocción usando solo radiación solar.",
+    "ahorro_dinero_estimado": "Sustituye 1–3 cocciones diarias de gas/leña.",
+    "ahorro_co2_estimado": "Evita combustibles para cocinar, menos CO2 y humo.",
+    "pasos": [
+      "Construye doble caja de cartón con cámara de aire; forra interior con aluminio.",
+      "Coloca tapa de vidrio/acetato; añade reflectores con cartón/aluminio.",
+      "Sella juntas con cinta; orienta al sol; precalienta 15–30 min.",
+      "Usa olla negra con tapa y termómetro si disponible para controlar."
+    ]
+  },
+  {
+    "id": 7,
+    "materiales_clave": "latas, arena, cemento, tubo metálico, leña",
+    "vivienda": "casa, rancho",
+    "tipo_mision": "Cocción Eficiente",
+    "mision_titulo": "Estufa Rocket con Latas y Aislamiento",
+    "instrucciones_basicas": "Usa latas grandes como conducto en L. Aísla con mezcla de arena y ceniza o perlita. Asegura tiro eficiente y base estable.",
+    "enfasis_renovable": "Más calor con menos leña (biomasa).",
+    "ahorro_dinero_estimado": "Ahorro 30–60% de leña.",
+    "ahorro_co2_estimado": "Menos humo y CO2 por unidad cocida.",
+    "pasos": [
+      "Corta y encaja latas para formar una L; fija en un balde/ladrillos.",
+      "Rellena alrededor con arena+ceniza o perlita; deja libre el conducto.",
+      "Coloca parrilla para olla; alimenta con leña fina y seca para mejor tiro.",
+      "Usa chimenea corta o salida a exterior si cocinas dentro de la vivienda."
+    ]
+  },
+  {
+    "id": 8,
+    "materiales_clave": "botellas PET, tijeras, alambre, malla",
+    "vivienda": "casa, apartamento",
+    "tipo_mision": "Ventilación Pasiva",
+    "mision_titulo": "Enfriador Pasivo con Botellas (Eco-Cooler)",
+    "instrucciones_basicas": "Corta fondo de botellas y móntalas en una placa en la ventana. El flujo se acelera y baja ligeramente la temperatura.",
+    "enfasis_renovable": "Aire fresco sin electricidad, solo dinámica de fluidos.",
+    "ahorro_dinero_estimado": "Reduce uso de ventilador/AC en horas templadas.",
+    "ahorro_co2_estimado": "Menor consumo eléctrico y CO2 asociado.",
+    "pasos": [
+      "Corta el fondo de varias botellas; conserva el cuello intacto.",
+      "Perfora una placa/planchuela y encaja los cuellos hacia afuera.",
+      "Instala la placa en la ventana expuesta a viento; sella bordes.",
+      "Combina con sombreado/ventilación cruzada para mayor efecto."
+    ]
+  },
+  {
+    "id": 9,
+    "materiales_clave": "tubos PVC, arena, grava, contenedor, tela",
+    "vivienda": "casa, rancho",
+    "tipo_mision": "Agua y Salud",
+    "mision_titulo": "Filtro de Agua Grava-Arena de Bajo Costo",
+    "instrucciones_basicas": "Prepara contenedor en capas: grava, arena fina y tela como prefiltro. Desinfecta con cloro o SODIS.",
+    "enfasis_renovable": "SODIS usa la radiación solar para desinfección.",
+    "ahorro_dinero_estimado": "Menor gasto en combustibles para hervir agua.",
+    "ahorro_co2_estimado": "Reduce quemas para potabilizar.",
+    "pasos": [
+      "Lava grava y arena; arma capas en contenedor: grava (fondo), arena (medio), tela (arriba).",
+      "Vierte agua lentamente; descarta los primeros litros hasta que salga clara.",
+      "Desinfecta: 2–4 gotas de cloro/L o SODIS (botella al sol 6 h).",
+      "Limpia el prefiltro de tela con frecuencia para mantener caudal."
+    ]
+  },
+  {
+    "id": 10,
+    "materiales_clave": "neumáticos, botellas, tierra, palas",
+    "vivienda": "rancho, casa",
+    "tipo_mision": "Aislamiento y Masa Térmica",
+    "mision_titulo": "Muro Trombe/masa térmica simple",
+    "instrucciones_basicas": "Rellena neumáticos con tierra como masa. Ubica frente a sol invernal o como zócalo. Mejora confort térmico.",
+    "enfasis_renovable": "Conserva calor gratuito del sol y reduce climatización.",
+    "ahorro_dinero_estimado": "5–15% menos gasto energético según clima.",
+    "ahorro_co2_estimado": "Menos demanda de calefacción/refrigeración.",
+    "pasos": [
+      "Rellena neumáticos con tierra compactada; coloca como zócalo/muro bajo.",
+      "Ubica en pared soleada (invierno) o como masa interior; asegúralos bien.",
+      "Pinta de oscuro para absorber calor si busca calefacción; protege con revoque.",
+      "Ventila en verano para evitar sobrecalentamiento interno."
+    ]
+  },
+  {
+    "id": 11,
+    "materiales_clave": "madera, bisagras, sellador, burletes, cortinas",
+    "vivienda": "apartamento, casa",
+    "tipo_mision": "Ahorro Eléctrico",
+    "mision_titulo": "Sellado Térmico de Puertas y Ventanas",
+    "instrucciones_basicas": "Instala burletes y sellador en marcos. Usa cortinas gruesas. Reduce infiltraciones de aire.",
+    "enfasis_renovable": "La energía más limpia es la que no se usa.",
+    "ahorro_dinero_estimado": "5–12% en climatización.",
+    "ahorro_co2_estimado": "Disminuye la energía de red requerida.",
+    "pasos": [
+      "Detecta fugas con una vela/humo de incienso en marcos y juntas.",
+      "Coloca burletes o sellador de silicona donde haya corrientes de aire.",
+      "Usa cortinas gruesas o rollos bajo puerta para mejorar aislamiento.",
+      "Revisa al cambiar de estación y repón burletes dañados."
+    ]
+  },
+  {
+    "id": 12,
+    "materiales_clave": "palets, madera reciclada, tornillos, barniz",
+    "vivienda": "apartamento, casa, rancho",
+    "tipo_mision": "Secado Solar",
+    "mision_titulo": "Secador Solar de Alimentos Simple",
+    "instrucciones_basicas": "Construye caja con bandejas y cubierta transparente. Aberturas con malla para flujo de aire. Ubica al sol.",
+    "enfasis_renovable": "Deshidratación por calor solar, conserva alimentos.",
+    "ahorro_dinero_estimado": "Ahorro en conservación y menos desperdicio.",
+    "ahorro_co2_estimado": "Reduce compras y transporte, menor huella.",
+    "pasos": [
+      "Construye una caja con 2–3 bandejas; pinta interior oscuro si es posible.",
+      "Cubre con lámina transparente; agrega entradas/bocas de aire con malla.",
+      "Corta alimentos en láminas delgadas; ubica al sol y ventila por convección.",
+      "Gira bandejas cada pocas horas y guarda en frascos secos."
+    ]
+  },
+  {
+    "id": 13,
+    "materiales_clave": "botellas, manguera, bidón, pintura negra",
+    "vivienda": "apartamento, casa",
+    "tipo_mision": "Ducha Solar",
+    "mision_titulo": "Ducha Solar de Gravedad",
+    "instrucciones_basicas": "Pinta bidón/manguera de negro. Coloca al sol en altura. Conecta a regadera por gravedad.",
+    "enfasis_renovable": "Agua tibia gracias a la radiación solar.",
+    "ahorro_dinero_estimado": "Ahorra gas/eléctrica en duchas diurnas.",
+    "ahorro_co2_estimado": "Menos CO2 por calefón/termoeléctrico.",
+    "pasos": [
+      "Pinta de negro un bidón/manguera; colócalo elevado y orientado al sol.",
+      "Conecta la salida a una regadera; añade válvula para cortar el flujo.",
+      "Purga el aire del sistema y prueba la temperatura en horas de mayor sol.",
+      "Aísla tramos expuestos al frío para conservar calor."
+    ]
+  },
+  {
+    "id": 14,
+    "materiales_clave": "LEDs 12V, batería reciclada, panel pequeño, cable",
+    "vivienda": "rancho, casa",
+    "tipo_mision": "Iluminación Solar",
+    "mision_titulo": "Kit Solar Básico de Iluminación",
+    "instrucciones_basicas": "Conecta panel 20–50W a batería (con protección) y usa LEDs 12V. Asegura polaridad y fusibles.",
+    "enfasis_renovable": "Luz nocturna de energía solar.",
+    "ahorro_dinero_estimado": "Reduce compra de velas/gas o red.",
+    "ahorro_co2_estimado": "Menor consumo de red fósil.",
+    "pasos": [
+      "Instala panel 20–50W orientado al sol y cablea a un controlador de carga.",
+      "Conecta el controlador a una batería adecuada (12V) con fusible y polaridad correcta.",
+      "Alimenta lámparas LED 12V desde el controlador/batería con cables seguros.",
+      "Fija todo en un tablero, etiqueta y protege conexiones contra humedad."
+    ]
+  },
+  {
+    "id": 15,
+    "materiales_clave": "botellas PET negras, marco, pintura, aislante",
+    "vivienda": "casa, rancho",
+    "tipo_mision": "Aire Caliente Solar",
+    "mision_titulo": "Colector Solar de Aire con Botellas",
+    "instrucciones_basicas": "Pinta botellas de negro, perfora bases y conéctalas en panel. Aspira aire por abajo, caliéntalo y descarga arriba a la habitación.",
+    "enfasis_renovable": "Calefacción gratuita del sol.",
+    "ahorro_dinero_estimado": "Ahorros en invierno dependiendo del clima.",
+    "ahorro_co2_estimado": "Menor uso de calefacción fósil.",
+    "pasos": [
+      "Pinta botellas de negro; perfora bases y conéctalas formando columnas.",
+      "Monta las columnas en un marco sellado; deja entrada de aire abajo y salida arriba.",
+      "Instala en muro soleado; canaliza la salida hacia la habitación.",
+      "Sella uniones para evitar fugas y usa malla contra insectos."
+    ]
+  }
+]
