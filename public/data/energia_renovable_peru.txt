@@ -1,0 +1,52 @@
+ENERGÍAS RENOVABLES EN EL PERÚ - RESUMEN CONCISO
+
+Fuente: Osinergmin, “Energías renovables: experiencia y perspectivas en la ruta del Perú hacia la transición energética”, 2019.
+
+1. CONTEXTO GENERAL
+El Perú tiene una matriz eléctrica limpia por la presencia de hidroeléctricas y gas natural. Sin embargo, aún depende del petróleo para el transporte (47% de la energía primaria). Esto afecta el ambiente y la economía. Por ello, se impulsa la transición energética hacia fuentes limpias y sostenibles.
+
+2. TIPOS DE ENERGÍAS RENOVABLES
+- Solar: convierte radiación del sol en electricidad. Tipos: fotovoltaica y térmica.
+- Eólica: usa el viento mediante aerogeneradores (onshore y offshore).
+- Biomasa: obtiene energía de materia orgánica. Procesos bioquímicos y termoquímicos.
+- Minihidráulica: centrales pequeñas (menos de 20 MW) que aprovechan cauces o presas.
+- Marítima: aprovecha mareas, olas o diferencias térmicas del mar.
+- Geotérmica: utiliza el calor interno de la Tierra (plantas de vapor seco, flash y ciclo binario).
+
+3. BENEFICIOS DE LAS RENOVABLES (RER)
+- Baja conflictividad social y menor impacto ambiental.
+- Rápida implementación (2 a 3 años en promedio).
+- Diversificación de fuentes y reducción de dependencia del gas y petróleo.
+- Descentralización geográfica: permite energía en zonas rurales.
+- Reducción de gases contaminantes (CO2) y mejora de la salud ambiental.
+- Facilitan el acceso rural a electricidad mediante sistemas autónomos.
+
+4. RETOS DE LAS RER
+- Intermitencia (no siempre hay sol o viento).
+- Integración a gran escala en la red eléctrica.
+- Costos iniciales altos y necesidad de almacenamiento energético.
+
+5. POLÍTICAS Y PROMOCIÓN
+Desde el Decreto Legislativo 1002 (2008), el Perú realiza subastas RER para promover energía solar, eólica, minihidráulica y biomasa. Se hicieron 4 subastas on-grid y 1 off-grid, diversificando la generación eléctrica nacional.
+
+6. ESTADO ACTUAL
+A 2018, las RER representaban cerca del 8% de la generación eléctrica. Las más comunes son la solar y la eólica. El sur del Perú (como Moquegua e Ica) tiene alta radiación solar; el norte y costa presentan buen potencial eólico.
+
+7. SISTEMAS FOTOVOLTAICOS AUTÓNOMOS
+Estos sistemas proveen electricidad en zonas rurales aisladas sin conexión al SEIN. Son usados en comunidades como los Uros (Puno). Componentes: paneles solares, baterías, inversor y controlador de carga.
+
+8. PERSPECTIVAS FUTURAS
+- Smart Cities: uso eficiente de energía en ciudades conectadas y sostenibles.
+- Generación distribuida: usuarios que producen su propia energía y la intercambian.
+- Almacenamiento energético: baterías y sistemas que estabilizan la red.
+- Electromovilidad: vehículos eléctricos para reducir emisiones urbanas.
+
+9. CONCLUSIONES
+El Perú necesita seguir diversificando su matriz energética, promover tecnologías limpias y reducir la dependencia del petróleo. Las energías renovables ofrecen beneficios económicos, sociales y ambientales.
+
+10. MENSAJE CLAVE
+La transición energética peruana requiere combinar políticas públicas, inversión privada y educación ambiental. Las energías renovables son la base para un futuro limpio, inclusivo y sostenible.
+
+---
+
+Palabras clave: energía solar, eólica, biomasa, geotermia, transición energética, Perú, Osinergmin, sostenibilidad, subastas RER, energía rural, electromovilidad, smart cities.
