@@ -1,15 +1,16 @@
+
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, ListChecks, BarChart3, User as UserIcon } from 'lucide-react';
+import { Home, ListChecks, BarChart3, User as UserIcon, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/context/user-context';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const navItems = [
   { href: '/home', icon: Home, label: 'Home' },
-  { href: '/missions', icon: ListChecks, label: 'Missions' },
+  { href: '/missions', icon: Zap, label: 'Missions' },
   { href: '/impact', icon: BarChart3, label: 'Impact' },
   { href: '/profile', icon: UserIcon, label: 'Profile' },
 ];
@@ -20,10 +21,10 @@ export function BottomNav() {
 
   const getLabel = (label: string, forTooltip: boolean = false) => {
     if (label === 'Home') {
-      return user?.segment === 'Youth' ? 'My Village' : 'Home';
+      return user?.segment === 'Youth' ? 'Aldea' : 'Home';
     }
     if (label === 'Missions') {
-      return user?.segment === 'Youth' ? 'Learn' : 'Missions';
+      return 'Explorar';
     }
     return label;
   };
@@ -33,7 +34,7 @@ export function BottomNav() {
       <nav className="mx-auto flex h-16 max-w-lg items-center justify-around">
         <TooltipProvider>
           {navItems.map((item) => {
-            const isActive = pathname === item.href || (item.href === '/missions' && pathname.startsWith('/missions'));
+            const isActive = pathname === item.href || (item.href === '/missions' && pathname.startsWith('/missions')) || (item.href === '/missions' && pathname.startsWith('/learn'));
             const finalLabel = getLabel(item.label);
             return (
               <Tooltip key={item.href}>
