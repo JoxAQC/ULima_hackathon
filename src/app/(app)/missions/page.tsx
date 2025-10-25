@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { missions } from '@/lib/data';
 import { useUser } from '@/context/user-context';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, BookOpen } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { SmartAssistant } from '@/components/missions/smart-assistant';
 
@@ -48,6 +48,23 @@ export default function MissionsPage() {
       </header>
       
       <SmartAssistant allMissions={availableMissions} />
+
+      <Link href="/learn">
+        <Card className="bg-secondary/20 hover:border-secondary transition-all">
+          <CardHeader>
+            <div className="flex items-center gap-4">
+              <div className="bg-secondary/50 p-3 rounded-full">
+                <BookOpen className="h-6 w-6 text-secondary-foreground" />
+              </div>
+              <div className="flex-grow">
+                <CardTitle>Aprende con Energía</CardTitle>
+                <CardDescription>Fortalece tus conocimientos con guías y tests interactivos.</CardDescription>
+              </div>
+              <ArrowRight className="h-5 w-5 text-secondary-foreground" />
+            </div>
+          </CardHeader>
+        </Card>
+      </Link>
 
       <div className="space-y-8">
         {Object.entries(modules).map(([moduleTitle, missionsInModule]) => {
